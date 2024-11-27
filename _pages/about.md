@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: Developer | HCI Researcher | XR | AIGC | ERFI Lab Member
 
 profile:
   align: right
