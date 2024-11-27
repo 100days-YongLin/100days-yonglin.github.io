@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: Developer / HCI Researcher / AIGC / Virtual Reality
 
 profile:
   align: right
