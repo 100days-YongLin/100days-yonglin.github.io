@@ -6,4 +6,3 @@ related_posts: false
 ---
 
 Participated in the **ChineseCHI 2024** conference held at **Southern University of Science and Technology** in Shenzhen and presented the ours work *Choices2I*. 😄
-
