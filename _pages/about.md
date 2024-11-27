@@ -16,6 +16,6 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Hello! I am Yonglin, an HCI researcher; I graduated from the City University of Macau with a master's degree in data science. I find some possibilities about PhD. 
+Hello! I am Yonglin, an HCI researcher. I graduated from the City University of Macau with a master's degree in Data Science, and I am currently exploring possibilities for pursuing a PhD.
 
-Besides, You can see the website was very messy. I am setting now~
+By the way, I noticed the website was a bit messy earlier, but I’m working on organizing it now! :)
