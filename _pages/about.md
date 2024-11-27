@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Developer / HCI Researcher / AIGC / Virtual Reality
+subtitle: Developer, HCI Researcher, AIGC, Virtual Reality
 
 profile:
   align: right
