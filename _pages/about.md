@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: Developer | HCI Researcher | Generative AI | X-Group | ERFI Lab
 
@@ -15,12 +15,14 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
 ---
 
-Hello! I am Yonglin, an HCI researcher. a Visiting Student at SUSTech, research about children's mental health.
+Hello! I am Yonglin 陈泳霖, an HCI researcher. a Visiting Student at SUSTech, research about **children develop psychological resilience through serious games.**
 
-I graduated from the City University of Macau with a master's degree in Data Science.
+I’m currently exploring and researching how AI can empower children’s language learning and mental health education. I’m also on the lookout for entrepreneurial and academic opportunities in this areas.
 
-Currently, I am exploring possibilities for a Human-Computer Interaction PhD, expected research direction is AI-enabled gamification learning. 
+In 2024, I worked as a Research Assistant at City University of Hong Kong for six months, where I studied user eye movement patterns across different transcription interfaces using eye-tracking technology under supervisor of Prof. Can Liu. Prior to that, I conducted research at the Tsinghua University AIR, focusing on an immersive CAVE space powered by LLMs for children with autism. My role involved building the system and designing the LLM-based technical framework.
 
-By the way, You will notice this website is a bit messy because pages are still being sorted. I’m working on it now!  :)  
+In 2023, I collaborated with a research group at XJTLU that studied embodiment in VR. I was responsible for the technical implementation, designing, and building VR environments.
 
-If you want to get to know me quickly, you can visit my [LinkedIn Page.](https://www.linkedin.com/in/yonglin-chen-7185ba335/)
+I have a background in computer science (both undergrad and master’s) and am now actively exploring PhD opportunities in HCI. I’m especially passionate about AI-powered gamified learning for children.
+
+If you’d like to connect or learn more about my work, or just want to chat . feel free to reach out [my email](mailto:yonglin0711@gmail.com). or via [Linkedin](https://www.linkedin.com/in/yonglin-chen-7185ba335/).
