@@ -15,7 +15,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
 ---
 
-Hello! I am Yonglin 陈泳霖, an HCI researcher. a Visiting Student at SUSTech, research about **children develop psychological resilience through serious games**, under supervisor of Prof.Xueliang Li
+Hello! I am Yonglin 陈泳霖, an HCI researcher. a Visiting Student at SUSTech, research about **children develop mental health through AI gamificate interaction**, under supervisor of Prof.Xueliang Li
 
 I’m currently exploring and researching how AI can empower children’s language learning and mental health education. I’m also on the lookout for entrepreneurial and academic opportunities in this areas.
 
@@ -35,7 +35,7 @@ In addition, during my master's degree, I was exposed to some 3D reconstruction 
 
 #### Exploring PhD opportunities
 
-I have a background in computer science (both undergrad and master’s) and am now actively **exploring PhD opportunities in HCI. I’m especially passionate about AI-powered gamified learning for children.**
+I have a background in computer science (both undergrad and master’s) and am now actively **exploring PhD opportunities in HCI. I’m especially passionate about AI-powered gamification learning for children.**
 
 
 
