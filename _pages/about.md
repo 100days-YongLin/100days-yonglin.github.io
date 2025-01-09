@@ -15,7 +15,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
 ---
 
-Hello! I am Yonglin 陈泳霖, an HCI researcher. a Visiting Student at SUSTech, research about **children develop psychological resilience through serious games.**
+Hello! I am Yonglin 陈泳霖, an HCI researcher. a Visiting Student at SUSTech, research about **children develop psychological resilience through serious games**, under supervisor of Prof.Xueliang Li
 
 I’m currently exploring and researching how AI can empower children’s language learning and mental health education. I’m also on the lookout for entrepreneurial and academic opportunities in this areas.
 
