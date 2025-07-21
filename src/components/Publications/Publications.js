@@ -71,6 +71,22 @@ const Publications = () => {
     return text.substring(0, maxLength) + '...';
   };
 
+  // 处理PDF下载
+  const handlePdfDownload = (pdfFileName) => {
+    if (!pdfFileName) return;
+    
+    // 创建下载链接
+    const link = document.createElement('a');
+    link.href = `/content/${pdfFileName}`;
+    link.download = pdfFileName;
+    link.target = '_blank';
+    
+    // 触发下载
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -205,18 +221,16 @@ const Publications = () => {
 
                     <div className="publication-actions">
                       {pub.pdf && (
-                        <motion.a
-                          href={`/content/${pub.pdf}`}
+                        <motion.button
+                          onClick={() => handlePdfDownload(pub.pdf)}
                           className="publication-link pdf-link"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          target="_blank"
-                          rel="noopener noreferrer"
                           title="Download PDF"
                         >
                           <FiDownload />
                           <span>PDF</span>
-                        </motion.a>
+                        </motion.button>
                       )}
 
                       <motion.a

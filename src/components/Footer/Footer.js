@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiLinkedin, FiGithub, FiHeart, FiArrowUp } from 'react-icons/fi';
+import { FiMail, FiLinkedin, FiArrowUp } from 'react-icons/fi';
 import './Footer.css';
 
 const Footer = () => {
