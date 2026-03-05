@@ -46,6 +46,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 14px;
 }
 
 code {
@@ -85,13 +86,13 @@ code {
 
 /* Utility classes */
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .section-padding {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
 }
 
 .text-gradient {
@@ -148,6 +149,10 @@ code {
   }
 
   .section-padding {
-    padding: 3rem 0;
+    padding: 2.5rem 0;
+  }
+  
+  body {
+    font-size: 13px;
   }
 }

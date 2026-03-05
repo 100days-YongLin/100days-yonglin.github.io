@@ -78,8 +78,8 @@ const About = () => {
               <div className="text-content">
                 <p>
                   I am an HCI researcher with a deep passion for developing AI-based co-storytelling
-                  systems that support children's mental health development. Currently working as a
-                  Visiting Student at SUSTech under the supervision of Prof. Xueliang Li.
+                  systems that support children's mental health development. Currently pursuing my PhD
+                  at the School of Design, SUSTech under the supervision of Prof. Xueliang Li.
                 </p>
 
                 <p>

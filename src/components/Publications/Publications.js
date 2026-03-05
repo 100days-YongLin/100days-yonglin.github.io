@@ -178,13 +178,20 @@ const Publications = () => {
                     <div className="authors">
                       <FiUsers className="authors-icon" />
                       <span className="authors-list">
-                        {pub.authors.map((author, idx) => (
-                          <span key={idx} className={author === "Yonglin Chen" ? "author-highlight" : ""}>
-                            {author}
-                            {idx < pub.authors.length - 1 ? ", " : ""}
-                          </span>
-                        ))}
+                        {pub.authors.map((author, idx) => {
+                          // 检查是否包含 "Yonglin Chen" (不区分是否有星号)
+                          const isYonglin = author.replace(/\*/g, '').includes("Yonglin Chen");
+                          return (
+                            <span key={idx} className={isYonglin ? "author-highlight" : ""}>
+                              {author}
+                              {idx < pub.authors.length - 1 ? ", " : ""}
+                            </span>
+                          );
+                        })}
                       </span>
+                      {pub.authors.some(author => author.includes('*')) && (
+                        <span className="equal-contribution-note"> (* Equal contribution)</span>
+                      )}
                     </div>
 
                     <div className="journal">

@@ -29,14 +29,14 @@
 }
 
 .year-label {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--primary-color);
   background: var(--background);
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
+  padding: 0.4rem 0.875rem;
+  border-radius: 10px;
   border: 2px solid var(--primary-color);
-  min-width: 80px;
+  min-width: 70px;
   text-align: center;
   position: relative;
   z-index: 3;
@@ -114,8 +114,8 @@
 .experience-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 1.5rem;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -162,7 +162,7 @@
 }
 
 .experience-title {
-  font-size: 1.375rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -171,19 +171,19 @@
 .current-badge {
   background: var(--primary-color);
   color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 16px;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .organization {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--primary-color);
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.875rem 0;
 }
 
 .experience-meta {
@@ -198,20 +198,20 @@
   align-items: center;
   gap: 0.5rem;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .meta-item svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   color: var(--text-light);
 }
 
 .experience-description {
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
 }
 
 .highlights {
@@ -222,11 +222,11 @@
 
 .highlights li {
   position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  margin-bottom: 0.65rem;
   color: var(--text-secondary);
   line-height: 1.5;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 .highlights li::before {
@@ -242,8 +242,8 @@
 }
 
 .papers-section {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--border);
 }
 
@@ -251,15 +251,15 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.875rem 0;
 }
 
 .papers-title svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   color: var(--primary-color);
 }
 
@@ -270,7 +270,7 @@
 }
 
 .paper-item {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .paper-item:last-child {
@@ -280,7 +280,7 @@
 .paper-link {
   color: var(--primary-color);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   line-height: 1.4;
   transition: all 0.3s ease;
   display: inline-block;
@@ -295,7 +295,7 @@
 .paper-link::before {
   content: '📄';
   margin-right: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 /* Mobile styles */
@@ -307,9 +307,9 @@
   }
 
   .year-label {
-    font-size: 1.5rem;
-    padding: 0.375rem 0.75rem;
-    min-width: 60px;
+    font-size: 1.35rem;
+    padding: 0.3rem 0.65rem;
+    min-width: 55px;
     margin-bottom: 0.5rem;
   }
 
@@ -336,20 +336,20 @@
   }
 
   .experience-card {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .experience-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   .organization {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .experience-meta {
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
   .card-header {
@@ -364,41 +364,41 @@
   }
 
   .papers-title {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
   }
 
   .paper-link {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 }
 
 /* Tablet styles */
 @media (min-width: 768px) and (max-width: 1023px) {
   .experience-card {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   .experience-meta {
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
 
 /* Desktop styles */
 @media (min-width: 1024px) {
   .timeline-marker {
-    margin-right: 3rem;
+    margin-right: 2.5rem;
   }
 
   .experience-card {
-    padding: 2.5rem;
+    padding: 1.75rem;
   }
 
   .experience-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .organization {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 }
 

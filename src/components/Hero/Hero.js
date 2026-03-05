@@ -61,8 +61,8 @@ const Hero = () => {
 
             <motion.p className="hero-description" variants={itemVariants}>
               I'm a HCI researcher focused on AI-based co-storytelling systems
-              for children's mental health development. Currently a Visiting Student and incoming PhD Student at School of Design, SUSTech, ShenZhen.
-              working on AI based human-computer interaction solutions.
+              for children's mental health development. Currently a PhD Student at School of Design, SUSTech, Shenzhen,
+              under the supervision of <a href="https://www.hci-xgroup.com/" target="_blank" rel="noopener noreferrer" className="supervisor-link">Prof. Xueliang Li</a>, working on AI based human-computer interaction solutions.
             </motion.p>
           </motion.div>
 

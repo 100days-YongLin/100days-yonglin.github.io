@@ -102,7 +102,7 @@ const Footer = () => {
           <div className="footer-bottom">
             <div className="footer-bottom-content">
               <p className="copyright">
-                © {new Date().getFullYear()} Yonglin Chen. Made with TRAE & Claude-4-Sonnet, based on React.
+                © {new Date().getFullYear()} Yonglin Chen. Made with Claude Sonnet 4.5, updated on Kiro, based on React.
               </p>
 
               <motion.button

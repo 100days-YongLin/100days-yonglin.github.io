@@ -36,26 +36,36 @@ const News = () => {
   const newsItems = [
     {
       id: 1,
-      date: "Dec 05, 2024",
-      title: "Visiting Student at SUSTech",
-      description: "I joined the X-Group at the School of Design, Southern University of Science and Technology (SUSTech), as a Visiting Student under the guidance of Prof. Xueliang Li.",
-      type: "position",
+      date: "Jun 2025",
+      title: "Admitted to PhD Program at SUSTech",
+      description: "Received PhD offer from the School of Design, Southern University of Science and Technology (SUSTech). Will start in September 2025 under the supervision of Prof. Xueliang Li.",
+      type: "milestone",
       icon: FiAward,
       location: "Shenzhen, China",
       recent: true
     },
     {
       id: 2,
+      date: "Dec 05, 2024",
+      title: "Visiting Student at SUSTech",
+      description: "Joined the X-Group at the School of Design, Southern University of Science and Technology (SUSTech), as a Visiting Student under the guidance of Prof. Xueliang Li.",
+      type: "position",
+      icon: FiAward,
+      location: "Shenzhen, China",
+      recent: true
+    },
+    {
+      id: 3,
       date: "Nov 24, 2024",
       title: "Presented at ChineseCHI 2024",
       description: "Participated in the ChineseCHI 2024 conference held at Southern University of Science and Technology in Shenzhen and presented our work Choices2I. 😄",
       type: "conference",
       icon: FiUsers,
       location: "Shenzhen, China",
-      recent: true
+      recent: false
     },
     {
-      id: 3,
+      id: 4,
       date: "Mar 15, 2024",
       title: "Research Assistant at CityU",
       description: "Hired as a 6-month Research Assistant at Prof. LIU Can's ERFI Lab, School of Creative Media, City University of Hong Kong.",

@@ -36,13 +36,13 @@ const Experience = () => {
   const experiences = [
     {
       id: 1,
-      title: "Visiting Student / Incoming PhD student",
+      title: "PhD Student",
       organization: "Southern University of Science and Technology (SUSTech)",
-      period: "December 2024 - Present",
-      year: 2024,
+      period: "September 2025 - Present",
+      year: 2025,
       location: "Shenzhen, China",
       supervisor: "Prof. Xueliang Li",
-      description: "Researching AI-based co-storytelling systems for children to develop mental health under the supervision of Prof. Xueliang Li at the X-Group, School of Design.",
+      description: "Pursuing PhD in Design at the School of Design, researching AI-based co-storytelling systems for children's mental health development under the supervision of Prof. Xueliang Li at the X-Group.",
       highlights: [
         "Developing innovative AI-powered storytelling interfaces",
         "Focusing on children's mental health applications"
@@ -51,6 +51,21 @@ const Experience = () => {
     },
     {
       id: 2,
+      title: "Visiting Student",
+      organization: "Southern University of Science and Technology (SUSTech)",
+      period: "December 2024 - August 2025",
+      year: 2024,
+      location: "Shenzhen, China",
+      supervisor: "Prof. Xueliang Li",
+      description: "Researched AI-based co-storytelling systems for children to develop mental health under the supervision of Prof. Xueliang Li at the X-Group, School of Design.",
+      highlights: [
+        "Developed innovative AI-powered storytelling interfaces",
+        "Focused on children's mental health applications"
+      ],
+      current: false
+    },
+    {
+      id: 3,
       title: "Research Assistant",
       organization: "City University of Hong Kong",
       period: "March 2024 - September 2024",
@@ -65,7 +80,7 @@ const Experience = () => {
       current: false
     },
     {
-      id: 3,
+      id: 4,
       title: "Research Participant",
       organization: "Tsinghua University AIR",
       period: "Winter 2023",
@@ -80,7 +95,7 @@ const Experience = () => {
       current: false
     },
     {
-      id: 4,
+      id: 5,
       title: "Research Collaborator",
       organization: "Xi'an Jiaotong-Liverpool University (XJTLU)",
       period: "2023",
