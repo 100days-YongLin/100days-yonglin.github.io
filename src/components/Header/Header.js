@@ -1,27 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
+import {
+  FiSun,
+  FiMoon,
+  FiMenu,
+  FiX,
+  FiUser,
+  FiBriefcase,
+  FiBookOpen,
+  FiBell,
+  FiMail
+} from 'react-icons/fi';
 import './Header.css';
 
 const Header = ({ darkMode, toggleDarkMode }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      const sections = ['home', 'about', 'experience', 'publications', 'news', 'contact'];
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (!element) return false;
+
+        const rect = element.getBoundingClientRect();
+        return rect.top <= 180 && rect.bottom >= 180;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Publications', href: '#publications' },
-    { name: 'News', href: '#news' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Profile', href: '#home', icon: FiUser },
+    { name: 'About', href: '#about', icon: FiUser },
+    { name: 'Experience', href: '#experience', icon: FiBriefcase },
+    { name: 'Publications', href: '#publications', icon: FiBookOpen },
+    { name: 'News', href: '#news', icon: FiBell },
+    { name: 'Contact', href: '#contact', icon: FiMail }
   ];
 
   const scrollToSection = (href) => {
@@ -35,11 +61,11 @@ const Header = ({ darkMode, toggleDarkMode }) => {
   return (
     <motion.header
       className={`header ${isScrolled ? 'scrolled' : ''}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ opacity: 0, x: -24 }}
+      animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="container">
+      <div className="sidebar-inner">
         <div className="header-content">
           <motion.div
             className="logo"
@@ -67,8 +93,9 @@ const Header = ({ darkMode, toggleDarkMode }) => {
                       e.preventDefault();
                       scrollToSection(item.href);
                     }}
-                    className="nav-link"
+                    className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
                   >
+                    <item.icon />
                     {item.name}
                   </a>
                 </motion.li>
@@ -77,6 +104,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
           </nav>
 
           <div className="header-actions">
+            <span className="theme-label">{darkMode ? 'Dark' : 'Light'}</span>
             <motion.button
               className="theme-toggle"
               onClick={toggleDarkMode}
@@ -99,7 +127,6 @@ const Header = ({ darkMode, toggleDarkMode }) => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <motion.nav
           className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}
           initial={false}
@@ -126,8 +153,9 @@ const Header = ({ darkMode, toggleDarkMode }) => {
                     e.preventDefault();
                     scrollToSection(item.href);
                   }}
-                  className="mobile-nav-link"
+                  className={`mobile-nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
                 >
+                  <item.icon />
                   {item.name}
                 </a>
               </motion.li>

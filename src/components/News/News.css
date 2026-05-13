@@ -1,5 +1,5 @@
 .news {
-  background: var(--background);
+  background: transparent;
 }
 
 .news-content {
@@ -35,7 +35,7 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--surface);
+  background: var(--surface-solid);
   border: 3px solid currentColor;
   display: flex;
   align-items: center;
@@ -65,7 +65,7 @@
 
 .news-card {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-border);
   border-radius: 14px;
   padding: 1.25rem;
   transition: all 0.3s ease;
@@ -87,7 +87,7 @@
 
 .news-item:hover .news-card {
   box-shadow: 0 8px 25px var(--shadow);
-  border-color: var(--primary-color);
+  border-color: rgba(14, 165, 233, 0.45);
 }
 
 .news-item:hover .news-card::before {
@@ -202,7 +202,7 @@
   padding: 1.5rem;
   background: var(--surface);
   border-radius: 16px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-border);
 }
 
 .footer-text {

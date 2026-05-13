@@ -1,5 +1,5 @@
 .contact {
-  background: var(--surface);
+  background: transparent;
 }
 
 .contact-content {
@@ -25,8 +25,8 @@
 }
 
 .info-card {
-  background: var(--background);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
   border-radius: 14px;
   padding: 1.5rem 1.25rem;
   transition: all 0.3s ease;
@@ -43,13 +43,13 @@
 
 .info-card:hover {
   box-shadow: 0 8px 25px var(--shadow);
-  border-color: var(--primary-color);
+  border-color: rgba(14, 165, 233, 0.45);
 }
 
 .info-icon {
   width: 42px;
   height: 42px;
-  background: var(--primary-color);
+  background: var(--gradient);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -93,8 +93,8 @@
 }
 
 .contact-cta {
-  background: var(--background);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
   border-radius: 14px;
   padding: 1.5rem;
 }
@@ -139,8 +139,8 @@
 }
 
 .contact-form {
-  background: var(--background);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 1.5rem;
 }
@@ -171,7 +171,7 @@
   padding: 0.75rem 0.875rem;
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: var(--surface);
+  background: var(--control-bg);
   color: var(--text-primary);
   font-size: 0.9rem;
   transition: all 0.3s ease;

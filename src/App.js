@@ -30,22 +30,27 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <main>
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
-                <About />
-                <Experience />
-                <Publications />
-                <News />
-                <Contact />
-              </>
-            } />
-          </Routes>
-        </main>
-        <Footer />
+        <div className="app-atmosphere" aria-hidden="true"></div>
+        <div className="settings-window">
+          <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <div className="content-pane">
+            <main>
+              <Routes>
+                <Route path="/" element={
+                  <>
+                    <Hero />
+                    <About />
+                    <Experience />
+                    <Publications />
+                    <News />
+                    <Contact />
+                  </>
+                } />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </div>
       </div>
     </Router>
   );

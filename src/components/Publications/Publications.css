@@ -1,5 +1,5 @@
 .publications {
-  background: var(--surface);
+  background: transparent;
 }
 
 .publications-content {
@@ -16,8 +16,8 @@
 }
 
 .publication-item {
-  background: var(--background);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
   border-radius: 14px;
   padding: 1.5rem;
   transition: all 0.3s ease;
@@ -39,7 +39,7 @@
 
 .publication-item:hover {
   box-shadow: 0 8px 25px var(--shadow);
-  border-color: var(--primary-color);
+  border-color: rgba(14, 165, 233, 0.45);
   transform: translateX(5px);
 }
 
@@ -73,7 +73,7 @@
 }
 
 .publication-type {
-  background: var(--surface);
+  background: var(--control-bg);
   color: var(--text-secondary);
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
@@ -109,8 +109,8 @@
   max-height: 160px;
   border-radius: 10px;
   overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--control-bg);
+  border: 1px solid var(--glass-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -227,7 +227,7 @@
 }
 
 .pdf-link {
-  background: var(--surface);
+  background: var(--control-bg);
   color: var(--text-secondary);
   border: 1px solid var(--border);
 }
@@ -252,9 +252,9 @@
 .publications-footer {
   text-align: center;
   padding: 1.5rem;
-  background: var(--background);
+  background: var(--surface);
   border-radius: 16px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-border);
 }
 
 .footer-text {
@@ -274,7 +274,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.65rem 1.25rem;
-  background: var(--surface);
+  background: var(--control-bg);
   color: var(--text-secondary);
   text-decoration: none;
   border-radius: 20px;
