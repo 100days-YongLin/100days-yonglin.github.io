@@ -106,6 +106,19 @@
   color: var(--text-primary);
 }
 
+.nav-link:focus,
+.mobile-nav-link:focus,
+.logo a:focus {
+  outline: none;
+}
+
+.nav-link:focus-visible,
+.mobile-nav-link:focus-visible,
+.logo a:focus-visible {
+  outline: none;
+  background: var(--sidebar-active);
+}
+
 .nav-link:hover svg,
 .mobile-nav-link:hover svg,
 .nav-link.active svg,
