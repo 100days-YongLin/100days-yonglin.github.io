@@ -74,7 +74,7 @@ const About = () => {
           </motion.div>
 
           <div className="about-grid">
-            <motion.div className="about-text" variants={itemVariants}>
+            <div className="about-text">
               <div className="text-content">
                 <p>
                   I am an HCI researcher with a deep passion for developing AI-based co-storytelling
@@ -111,14 +111,13 @@ const About = () => {
                   </div>
                 </div> */}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div className="skills-grid" variants={itemVariants}>
+            <div className="skills-grid">
               {skills.map((skill, index) => (
                 <motion.div
                   key={index}
                   className="skill-card"
-                  variants={itemVariants}
                   whileHover={{ y: -5, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -129,7 +128,7 @@ const About = () => {
                   <p className="skill-description">{skill.description}</p>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>

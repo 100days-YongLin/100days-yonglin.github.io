@@ -10,7 +10,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: FiMail, href: 'mailto:yonglin.chen@example.com', label: 'Email' },
-    { icon: FiLinkedin, href: 'https://linkedin.com/in/yonglin-chen', label: 'LinkedIn' },
+    { icon: FiLinkedin, href: 'https://www.linkedin.com/in/yonglin-chen-7185ba335/', label: 'LinkedIn' },
   ];
 
   const quickLinks = [

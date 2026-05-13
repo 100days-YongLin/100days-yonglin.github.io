@@ -17,7 +17,7 @@ social_links:
     url: "https://github.com/yonglinchen"
     icon: "FiGithub"
   - platform: "linkedin"
-    url: "https://linkedin.com/in/yonglin-chen"
+    url: "https://www.linkedin.com/in/yonglin-chen-7185ba335/"
     icon: "FiLinkedin"
   - platform: "twitter"
     url: "https://twitter.com/yonglinchen"

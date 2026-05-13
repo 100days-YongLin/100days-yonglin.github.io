@@ -26,7 +26,9 @@
 
 .content-pane {
   min-width: 0;
-  overflow: hidden;
+  height: calc(100vh - 2rem);
+  overflow-y: auto;
+  overflow-x: hidden;
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.5);
@@ -40,7 +42,7 @@
 }
 
 main {
-  min-height: 100vh;
+  min-height: 0;
 }
 
 main > section {
@@ -54,16 +56,18 @@ main > section:first-child {
 
 .section-header {
   text-align: left;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .section-title {
-  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  font-size: clamp(1.12rem, 2vw, 1.55rem);
   letter-spacing: 0;
+  margin-bottom: 0.45rem;
 }
 
 .section-subtitle {
   margin: 0;
+  font-size: 0.82rem;
 }
 
 .about-content,
@@ -124,6 +128,8 @@ main > section:first-child {
   }
 
   .content-pane {
+    height: auto;
+    max-height: none;
     border-radius: 20px;
   }
 }

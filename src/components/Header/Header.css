@@ -52,14 +52,14 @@
 
 .logo-text {
   color: var(--text-primary);
-  font-size: 1.22rem;
+  font-size: 1.02rem;
   font-weight: 700;
   line-height: 1.15;
 }
 
 .logo-subtitle {
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 500;
 }
 
@@ -80,11 +80,11 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-height: 42px;
-  padding: 0.62rem 0.75rem;
+  min-height: 38px;
+  padding: 0.55rem 0.7rem;
   border-radius: 11px;
   color: var(--text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.78rem;
   font-weight: 600;
   text-decoration: none;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
@@ -129,7 +129,7 @@
 .theme-label {
   flex: 1;
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 600;
 }
 

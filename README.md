@@ -213,7 +213,7 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 If you have any questions or need help with setup, feel free to reach out:
 
 - Email: yonglin.chen@example.com
-- LinkedIn: [linkedin.com/in/yonglin-chen](https://linkedin.com/in/yonglin-chen)
+- LinkedIn: [linkedin.com/in/yonglin-chen-7185ba335](https://www.linkedin.com/in/yonglin-chen-7185ba335/)
 
 ---
 
