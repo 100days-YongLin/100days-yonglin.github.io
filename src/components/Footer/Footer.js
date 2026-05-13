@@ -5,6 +5,13 @@ import './Footer.css';
 
 const Footer = () => {
   const scrollToTop = () => {
+    const scrollContainer = document.querySelector('.content-pane');
+
+    if (scrollContainer) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -23,8 +30,15 @@ const Footer = () => {
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
+    const scrollContainer = document.querySelector('.content-pane');
+
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      if (scrollContainer) {
+        const top = scrollContainer.scrollTop + element.getBoundingClientRect().top - scrollContainer.getBoundingClientRect().top;
+        scrollContainer.scrollTo({ top, behavior: 'smooth' });
+      } else {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -102,7 +116,7 @@ const Footer = () => {
           <div className="footer-bottom">
             <div className="footer-bottom-content">
               <p className="copyright">
-                © {new Date().getFullYear()} Yonglin Chen. Made with Claude Sonnet 4.5, updated on Kiro, based on React.
+                © 2026 Yonglin Chen. Made with Codex (GPT-5), based on React.
               </p>
 
               <motion.button

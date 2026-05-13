@@ -19,26 +19,50 @@ const Header = ({ darkMode, toggleDarkMode }) => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    const getScrollContainer = () => document.querySelector('.content-pane');
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollContainer = getScrollContainer();
+      const scrollTop = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
+      const viewportTop = scrollContainer ? scrollContainer.getBoundingClientRect().top : 0;
+      const viewportHeight = scrollContainer ? scrollContainer.clientHeight : window.innerHeight;
+
+      setIsScrolled(scrollTop > 50);
 
       const sections = ['home', 'about', 'experience', 'publications', 'news', 'contact'];
-      const currentSection = sections.find((section) => {
+      let currentSection;
+
+      for (const section of sections) {
         const element = document.getElementById(section);
-        if (!element) return false;
+        if (!element) continue;
 
         const rect = element.getBoundingClientRect();
-        return rect.top <= 180 && rect.bottom >= 180;
-      });
+        if (rect.top <= viewportTop + 140 && rect.bottom > viewportTop + 140) {
+          currentSection = section;
+        }
+      }
 
       if (currentSection) {
         setActiveSection(currentSection);
+      } else if (
+        scrollContainer &&
+        scrollContainer.scrollTop + viewportHeight >= scrollContainer.scrollHeight - 4
+      ) {
+        setActiveSection('contact');
       }
     };
 
     handleScroll();
+    const scrollContainer = getScrollContainer();
+    scrollContainer?.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      scrollContainer?.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const navItems = [
@@ -52,8 +76,17 @@ const Header = ({ darkMode, toggleDarkMode }) => {
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
+    const scrollContainer = document.querySelector('.content-pane');
+
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      if (scrollContainer) {
+        const top = scrollContainer.scrollTop + element.getBoundingClientRect().top - scrollContainer.getBoundingClientRect().top;
+        scrollContainer.scrollTo({ top, behavior: 'smooth' });
+      } else {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      setActiveSection(href.slice(1));
     }
     setIsMobileMenuOpen(false);
   };
