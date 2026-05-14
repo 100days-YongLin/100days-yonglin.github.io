@@ -65,6 +65,7 @@
 }
 
 html {
+  font-size: 17px;
   scroll-behavior: smooth;
 }
 
@@ -81,7 +82,7 @@ body {
   color: var(--text-primary);
   line-height: 1.45;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 [data-theme="dark"] body {
@@ -196,6 +197,6 @@ code {
   }
   
   body {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
