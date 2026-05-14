@@ -9,6 +9,8 @@ const Publications = () => {
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedAbstracts, setExpandedAbstracts] = useState({});
+  const [activePublicationIndex, setActivePublicationIndex] = useState(0);
+  const [isAutoRotating, setIsAutoRotating] = useState(true);
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -40,6 +42,18 @@ const Publications = () => {
 
     loadPublications();
   }, []);
+
+  useEffect(() => {
+    if (!isAutoRotating || publications.length <= 1) return undefined;
+
+    const intervalId = window.setInterval(() => {
+      setActivePublicationIndex((currentIndex) => (
+        (currentIndex + 1) % publications.length
+      ));
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, [isAutoRotating, publications.length]);
 
   // 备用数据（如果 BibTeX 加载失败）
   const getFallbackPublications = () => [
@@ -87,6 +101,11 @@ const Publications = () => {
     document.body.removeChild(link);
   };
 
+  const selectPublication = (index) => {
+    setActivePublicationIndex(index);
+    setIsAutoRotating(false);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -125,6 +144,8 @@ const Publications = () => {
     );
   }
 
+  const activePublication = publications[activePublicationIndex] || publications[0];
+
   return (
     <section id="publications" className="publications section-padding">
       <div className="container">
@@ -142,76 +163,90 @@ const Publications = () => {
             </p>
           </motion.div>
 
-          <div className="publications-list">
-            {publications.map((pub, index) => (
-              <motion.article
-                key={pub.id}
-                className={`publication-item ${pub.featured ? 'featured' : ''}`}
-                variants={itemVariants}
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="publication-header">
-                  <div className="publication-meta">
-                    <span className="publication-type">{pub.type}</span>
-                    <span className="publication-year">{pub.year}</span>
-                  </div>
-                </div>
-
-                <div className="publication-content">
-                  {pub.preview && (
-                    <div className="publication-image">
+          {activePublication && (
+            <div className="publications-showcase">
+              <div className="publication-preview-strip" aria-label="Publication previews">
+                {publications.map((pub, index) => (
+                  <button
+                    key={pub.id}
+                    type="button"
+                    className={`publication-thumbnail ${index === activePublicationIndex ? 'active' : ''}`}
+                    onClick={() => selectPublication(index)}
+                    aria-label={`Show publication: ${pub.title}`}
+                  >
+                    {pub.preview ? (
                       <img
                         src={`/imgs/publication_preview/${pub.preview}`}
                         alt={`Preview of ${pub.title}`}
-                        className="preview-image"
+                        className="thumbnail-image"
                         onError={(e) => {
                           e.target.style.display = 'none';
                         }}
                       />
+                    ) : (
+                      <FiFileText />
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              <motion.article
+                key={activePublication.id}
+                className={`publication-detail-panel ${activePublication.featured ? 'featured' : ''}`}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                transition={{ duration: 0.3 }}
+              >
+                <div className="publication-body">
+                  <div className="publication-header">
+                    <div className="publication-meta">
+                      <span className="publication-type">{activePublication.type}</span>
+                      <span className="publication-year">{activePublication.year}</span>
+                      {isAutoRotating && <span className="publication-rotation-note">Auto preview</span>}
                     </div>
-                  )}
+                  </div>
 
                   <div className="publication-details">
-                    <h3 className="publication-title">{pub.title}</h3>
+                    <h3 className="publication-title">{activePublication.title}</h3>
 
                     <div className="authors">
                       <FiUsers className="authors-icon" />
                       <span className="authors-list">
-                        {pub.authors.map((author, idx) => {
+                        {activePublication.authors.map((author, idx) => {
                           // 检查是否包含 "Yonglin Chen" (不区分是否有星号)
                           const isYonglin = author.replace(/\*/g, '').includes("Yonglin Chen");
                           return (
                             <span key={idx} className={isYonglin ? "author-highlight" : ""}>
                               {author}
-                              {idx < pub.authors.length - 1 ? ", " : ""}
+                              {idx < activePublication.authors.length - 1 ? ", " : ""}
                             </span>
                           );
                         })}
                       </span>
-                      {pub.authors.some(author => author.includes('*')) && (
+                      {activePublication.authors.some(author => author.includes('*')) && (
                         <span className="equal-contribution-note"> (* Equal contribution)</span>
                       )}
                     </div>
 
                     <div className="journal">
                       <FiFileText className="journal-icon" />
-                      <span>{pub.journal}</span>
+                      <span>{activePublication.journal}</span>
                     </div>
 
                     <div className="abstract-section">
                       <p className="abstract">
-                        {expandedAbstracts[pub.id]
-                          ? pub.abstract
-                          : truncateAbstract(pub.abstract)
+                        {expandedAbstracts[activePublication.id]
+                          ? activePublication.abstract
+                          : truncateAbstract(activePublication.abstract)
                         }
                       </p>
-                      {pub.abstract.length > 200 && (
+                      {activePublication.abstract.length > 200 && (
                         <button
                           className="expand-button"
-                          onClick={() => toggleAbstract(pub.id)}
+                          onClick={() => toggleAbstract(activePublication.id)}
                         >
-                          {expandedAbstracts[pub.id] ? (
+                          {expandedAbstracts[activePublication.id] ? (
                             <>
                               <span>Show less</span>
                               <FiChevronUp />
@@ -227,9 +262,9 @@ const Publications = () => {
                     </div>
 
                     <div className="publication-actions">
-                      {pub.pdf && (
+                      {activePublication.pdf && (
                         <motion.button
-                          onClick={() => handlePdfDownload(pub.pdf)}
+                          onClick={() => handlePdfDownload(activePublication.pdf)}
                           className="publication-link pdf-link"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -241,7 +276,7 @@ const Publications = () => {
                       )}
 
                       <motion.a
-                        href={pub.link}
+                        href={activePublication.link}
                         className="publication-link main-link"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -255,8 +290,8 @@ const Publications = () => {
                   </div>
                 </div>
               </motion.article>
-            ))}
-          </div>
+            </div>
+          )}
 
 
         </motion.div>
