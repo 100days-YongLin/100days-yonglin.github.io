@@ -48,11 +48,13 @@
 }
 
 main {
+  height: 100%;
   min-height: 0;
 }
 
 .page-shell {
-  min-height: calc(100vh - 2rem);
+  height: 100%;
+  min-height: 0;
 }
 
 main > section {
