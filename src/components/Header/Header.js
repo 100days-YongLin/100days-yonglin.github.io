@@ -6,6 +6,7 @@ import {
   FiMenu,
   FiX,
   FiUser,
+  FiInfo,
   FiBriefcase,
   FiBookOpen,
   FiBell,
@@ -29,7 +30,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
 
       setIsScrolled(scrollTop > 50);
 
-      const sections = ['home', 'about', 'experience', 'publications', 'news', 'contact'];
+      const sections = ['home', 'about', 'publications', 'experience', 'news', 'contact'];
       let currentSection;
 
       for (const section of sections) {
@@ -67,9 +68,9 @@ const Header = ({ darkMode, toggleDarkMode }) => {
 
   const navItems = [
     { name: 'Profile', href: '#home', icon: FiUser },
-    { name: 'About', href: '#about', icon: FiUser },
-    { name: 'Experience', href: '#experience', icon: FiBriefcase },
+    { name: 'About', href: '#about', icon: FiInfo },
     { name: 'Publications', href: '#publications', icon: FiBookOpen },
+    { name: 'Experience', href: '#experience', icon: FiBriefcase },
     { name: 'News', href: '#news', icon: FiBell },
     { name: 'Contact', href: '#contact', icon: FiMail }
   ];
