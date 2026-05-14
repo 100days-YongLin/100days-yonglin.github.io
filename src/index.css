@@ -65,7 +65,10 @@
 }
 
 html {
+  height: 100%;
   font-size: 17px;
+  overflow: hidden;
+  overscroll-behavior: none;
   scroll-behavior: smooth;
 }
 
@@ -83,6 +86,14 @@ body {
   line-height: 1.45;
   transition: background-color 0.3s ease, color 0.3s ease;
   font-size: 14px;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+  overflow: hidden;
 }
 
 [data-theme="dark"] body {

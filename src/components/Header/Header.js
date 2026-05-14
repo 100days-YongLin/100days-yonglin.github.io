@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import {
   FiSun,
   FiMoon,
+  FiMonitor,
   FiMenu,
   FiX,
   FiUser,
@@ -14,7 +15,7 @@ import {
 } from 'react-icons/fi';
 import './Header.css';
 
-const Header = ({ activeSection, darkMode, onSectionChange, toggleDarkMode }) => {
+const Header = ({ activeSection, onSectionChange, onThemeModeChange, resolvedTheme, themeMode }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -24,6 +25,12 @@ const Header = ({ activeSection, darkMode, onSectionChange, toggleDarkMode }) =>
     { name: 'Experience', href: '#experience', icon: FiBriefcase },
     { name: 'News', href: '#news', icon: FiBell },
     { name: 'Contact', href: '#contact', icon: FiMail }
+  ];
+
+  const themeItems = [
+    { mode: 'system', icon: FiMonitor, label: 'System' },
+    { mode: 'dark', icon: FiMoon, label: 'Dark' },
+    { mode: 'light', icon: FiSun, label: 'Light' }
   ];
 
   const selectSection = (href) => {
@@ -83,16 +90,23 @@ const Header = ({ activeSection, darkMode, onSectionChange, toggleDarkMode }) =>
           </nav>
 
           <div className="header-actions">
-            <span className="theme-label">{darkMode ? 'Dark' : 'Light'}</span>
-            <motion.button
-              className="theme-toggle"
-              onClick={toggleDarkMode}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Toggle theme"
-            >
-              {darkMode ? <FiSun /> : <FiMoon />}
-            </motion.button>
+            <span className="theme-label">Theme</span>
+            <div className="theme-segmented" role="group" aria-label="Theme mode">
+              {themeItems.map((item) => (
+                <motion.button
+                  key={item.mode}
+                  className={`theme-option ${themeMode === item.mode ? 'active' : ''}`}
+                  onClick={() => onThemeModeChange(item.mode)}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  aria-label={`${item.label} theme`}
+                  aria-pressed={themeMode === item.mode}
+                  title={item.mode === 'system' ? `System (${resolvedTheme})` : item.label}
+                >
+                  <item.icon />
+                </motion.button>
+              ))}
+            </div>
 
             <motion.button
               className="mobile-menu-toggle"

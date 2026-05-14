@@ -1,5 +1,8 @@
 .App {
+  height: 100dvh;
   min-height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
   position: relative;
   padding: 1rem;
 }
@@ -20,15 +23,18 @@
   display: grid;
   grid-template-columns: 270px minmax(0, 1fr);
   gap: 1rem;
+  height: calc(100dvh - 2rem);
   width: min(1480px, 100%);
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .content-pane {
   min-width: 0;
-  height: calc(100vh - 2rem);
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  overscroll-behavior: contain;
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.5);
@@ -125,11 +131,12 @@ main > section {
   .settings-window {
     display: flex;
     flex-direction: column;
+    height: calc(100dvh - 1.5rem);
   }
 
   .content-pane {
-    height: auto;
-    max-height: none;
+    flex: 1;
+    min-height: 0;
     border-radius: 20px;
   }
 }
