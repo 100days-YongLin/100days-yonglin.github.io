@@ -68,9 +68,6 @@ const About = () => {
         >
           <motion.div className="section-header" variants={itemVariants}>
             <h2 className="section-title">About Me</h2>
-            <p className="section-subtitle">
-              Bridging artificial intelligence and human-computer interaction for meaningful experiences
-            </p>
           </motion.div>
 
           <div className="about-grid">

@@ -145,9 +145,6 @@ const Experience = () => {
         >
           <motion.div className="section-header" variants={itemVariants}>
             <h2 className="section-title">Experience</h2>
-            <p className="section-subtitle">
-              My journey in HCI research and development
-            </p>
           </motion.div>
 
           <div className="timeline">

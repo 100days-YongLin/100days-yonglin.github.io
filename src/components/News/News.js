@@ -114,9 +114,6 @@ const News = () => {
         >
           <motion.div className="section-header" variants={itemVariants}>
             <h2 className="section-title">Latest News</h2>
-            <p className="section-subtitle">
-              Recent updates and milestones in my research journey
-            </p>
           </motion.div>
 
           <div className="news-timeline">

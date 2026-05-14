@@ -91,7 +91,6 @@ const Contact = () => {
                     </div>
                     <div className="info-content">
                       <h3 className="info-title">{info.title}</h3>
-                      <span className="info-value">{info.value}</span>
                     </div>
                   </motion.a>
                 ))}
