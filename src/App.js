@@ -65,13 +65,26 @@ function App() {
         return;
       }
 
+      const isScrollingDown = event.deltaY > 0;
+      const maxScrollTop = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+      const isScrollable = maxScrollTop > 1;
+      const isAtTop = scrollContainer.scrollTop <= 1;
+      const isAtBottom = scrollContainer.scrollTop >= maxScrollTop - 1;
+      const shouldSwitchPage = !isScrollable ||
+        (isScrollingDown && isAtBottom) ||
+        (!isScrollingDown && isAtTop);
+
+      if (!shouldSwitchPage) {
+        return;
+      }
+
       const now = Date.now();
       if (now - lastWheelPageChangeRef.current < WHEEL_PAGE_COOLDOWN) {
         event.preventDefault();
         return;
       }
 
-      const direction = event.deltaY > 0 ? 1 : -1;
+      const direction = isScrollingDown ? 1 : -1;
       const currentIndex = SECTION_ORDER.indexOf(activeSectionRef.current);
       const nextIndex = Math.min(
         Math.max(currentIndex + direction, 0),
