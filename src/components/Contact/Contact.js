@@ -70,9 +70,6 @@ const Contact = () => {
         >
           <motion.div className="section-header" variants={itemVariants}>
             <h2 className="section-title">Contact</h2>
-            <p className="section-subtitle">
-              Let's discuss research opportunities, collaborations, or just have a chat about HCI
-            </p>
           </motion.div>
 
           <div className="contact-grid">

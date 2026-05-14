@@ -143,7 +143,6 @@ const News = () => {
                         <span className={`news-type type-${item.type}`}>
                           {getTypeLabel(item.type)}
                         </span>
-                        {item.recent && <span className="recent-badge">New</span>}
                       </div>
                     </div>
 
