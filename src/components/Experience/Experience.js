@@ -147,7 +147,7 @@ const Experience = () => {
                   className="year-marker"
                   variants={itemVariants}
                 >
-                  <div className="year-label">{year}</div>
+                  <div className="year-label">{year === '2025' ? '2025 - NOW' : year}</div>
                   <div className="year-line"></div>
                 </motion.div>
 
