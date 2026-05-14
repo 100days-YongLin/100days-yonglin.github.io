@@ -28,20 +28,25 @@ function App() {
     localStorage.setItem('theme', newTheme);
   };
 
+  const handleSectionChange = (section) => {
+    setActiveSection(section);
+
+    const scrollContainer = document.querySelector('.content-pane');
+    scrollContainer?.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
   const sectionPages = {
     home: <Hero />,
     about: <About />,
     publications: <Publications />,
     experience: <Experience />,
     news: <News />,
-    contact: <Contact />
-  };
-
-  const handleSectionChange = (section) => {
-    setActiveSection(section);
-
-    const scrollContainer = document.querySelector('.content-pane');
-    scrollContainer?.scrollTo({ top: 0, behavior: 'auto' });
+    contact: (
+      <>
+        <Contact />
+        <Footer onSectionChange={handleSectionChange} />
+      </>
+    )
   };
 
   return (
@@ -65,7 +70,6 @@ function App() {
                 } />
               </Routes>
             </main>
-            <Footer onSectionChange={handleSectionChange} />
           </div>
         </div>
       </div>
