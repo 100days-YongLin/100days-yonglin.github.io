@@ -163,22 +163,20 @@
   position: relative;
   width: 210px;
   height: 240px;
-  padding: 0.8rem;
+  padding: 0;
   border: 1px solid var(--glass-border);
-  border-radius: 26px;
-  background: var(--surface);
+  border-radius: 0;
+  background: transparent;
   box-shadow: 0 18px 45px var(--shadow);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 
 .avatar-image {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  background: var(--surface-solid);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .personal-avatar {
@@ -223,6 +221,5 @@
   .avatar-container {
     width: 160px;
     height: 180px;
-    border-radius: 22px;
   }
 }
