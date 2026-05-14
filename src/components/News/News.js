@@ -120,25 +120,22 @@ const News = () => {
           </motion.div>
 
           <div className="news-timeline">
-            {newsItems.map((item, index) => (
+            {newsItems.map((item) => (
               <motion.article
                 key={item.id}
                 className={`news-item ${item.recent ? 'recent' : ''}`}
                 variants={itemVariants}
-                whileHover={{ scale: 1.02, x: 5 }}
+                whileHover={{ x: 4 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="news-marker">
-                  <div className="news-icon" style={{ color: getIconColor(item.type) }}>
-                    <item.icon />
-                  </div>
-                  {index < newsItems.length - 1 && <div className="news-line"></div>}
-                </div>
-
                 <div className="news-content-wrapper">
                   <div className="news-card">
-                    <div className="news-header">
-                      <div className="news-meta">
+                    <div className="news-row-meta">
+                      <div className="news-icon" style={{ color: getIconColor(item.type) }}>
+                        <item.icon />
+                      </div>
+
+                      <div className="news-meta-stack">
                         <span className="news-date">
                           <FiCalendar />
                           {item.date}
@@ -148,16 +145,19 @@ const News = () => {
                         </span>
                         {item.recent && <span className="recent-badge">New</span>}
                       </div>
-                      {item.location && (
-                        <div className="news-location">
-                          <FiMapPin />
-                          <span>{item.location}</span>
-                        </div>
-                      )}
                     </div>
 
-                    <h3 className="news-title">{item.title}</h3>
-                    <p className="news-description">{item.description}</p>
+                    <div className="news-main">
+                      <h3 className="news-title">{item.title}</h3>
+                      <p className="news-description">{item.description}</p>
+                    </div>
+
+                    {item.location && (
+                      <div className="news-location">
+                        <FiMapPin />
+                        <span>{item.location}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.article>
