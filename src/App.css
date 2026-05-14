@@ -45,12 +45,12 @@ main {
   min-height: 0;
 }
 
-main > section {
-  background: transparent;
-  border-top: 1px solid var(--glass-border);
+.page-shell {
+  min-height: calc(100vh - 2rem);
 }
 
-main > section:first-child {
+main > section {
+  background: transparent;
   border-top: 0;
 }
 

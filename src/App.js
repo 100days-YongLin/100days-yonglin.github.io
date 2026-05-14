@@ -12,6 +12,7 @@ import './App.css';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     // 强制使用暗色模式
@@ -27,28 +28,44 @@ function App() {
     localStorage.setItem('theme', newTheme);
   };
 
+  const sectionPages = {
+    home: <Hero />,
+    about: <About />,
+    publications: <Publications />,
+    experience: <Experience />,
+    news: <News />,
+    contact: <Contact />
+  };
+
+  const handleSectionChange = (section) => {
+    setActiveSection(section);
+
+    const scrollContainer = document.querySelector('.content-pane');
+    scrollContainer?.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
   return (
     <Router>
       <div className="App">
         <div className="app-atmosphere" aria-hidden="true"></div>
         <div className="settings-window">
-          <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <Header
+            activeSection={activeSection}
+            darkMode={darkMode}
+            onSectionChange={handleSectionChange}
+            toggleDarkMode={toggleDarkMode}
+          />
           <div className="content-pane">
             <main>
               <Routes>
                 <Route path="/" element={
-                  <>
-                    <Hero />
-                    <About />
-                    <Experience />
-                    <Publications />
-                    <News />
-                    <Contact />
-                  </>
+                  <div className="page-shell">
+                    {sectionPages[activeSection]}
+                  </div>
                 } />
               </Routes>
             </main>
-            <Footer />
+            <Footer onSectionChange={handleSectionChange} />
           </div>
         </div>
       </div>

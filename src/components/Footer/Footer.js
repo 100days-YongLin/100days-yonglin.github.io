@@ -3,16 +3,9 @@ import { motion } from 'framer-motion';
 import { FiMail, FiLinkedin, FiArrowUp } from 'react-icons/fi';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ onSectionChange }) => {
   const scrollToTop = () => {
-    const scrollContainer = document.querySelector('.content-pane');
-
-    if (scrollContainer) {
-      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    onSectionChange('home');
   };
 
   const socialLinks = [
@@ -22,24 +15,14 @@ const Footer = () => {
 
   const quickLinks = [
     { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
     { name: 'Publications', href: '#publications' },
+    { name: 'Experience', href: '#experience' },
     { name: 'News', href: '#news' },
     { name: 'Contact', href: '#contact' }
   ];
 
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    const scrollContainer = document.querySelector('.content-pane');
-
-    if (element) {
-      if (scrollContainer) {
-        const top = scrollContainer.scrollTop + element.getBoundingClientRect().top - scrollContainer.getBoundingClientRect().top;
-        scrollContainer.scrollTo({ top, behavior: 'smooth' });
-      } else {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+  const selectSection = (href) => {
+    onSectionChange(href.slice(1));
   };
 
   return (
@@ -66,7 +49,7 @@ const Footer = () => {
                         href={link.href}
                         onClick={(e) => {
                           e.preventDefault();
-                          scrollToSection(link.href);
+                          selectSection(link.href);
                         }}
                         className="footer-link"
                       >
