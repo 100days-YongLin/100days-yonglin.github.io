@@ -42,6 +42,8 @@ const Experience = () => {
       year: 2025,
       location: "Shenzhen, China",
       supervisor: "Prof. Xueliang Li",
+      logo: "/imgs/experience_logos/sustech-design.svg",
+      logoAlt: "SUSTech School of Design",
       description: "Pursuing PhD in Design at the School of Design, researching AI-based co-storytelling systems for children's mental health development under the supervision of Prof. Xueliang Li at the X-Group.",
       highlights: [
         "Developing innovative AI-powered storytelling interfaces",
@@ -57,6 +59,8 @@ const Experience = () => {
       year: 2024,
       location: "Shenzhen, China",
       supervisor: "Prof. Xueliang Li",
+      logo: "/imgs/experience_logos/sustech-design.svg",
+      logoAlt: "SUSTech School of Design",
       description: "Researched AI-based co-storytelling systems for children to develop mental health under the supervision of Prof. Xueliang Li at the X-Group, School of Design.",
       highlights: [
         "Developed innovative AI-powered storytelling interfaces",
@@ -72,6 +76,8 @@ const Experience = () => {
       year: 2024,
       location: "Hong Kong",
       supervisor: "Prof. Can Liu",
+      logo: "/imgs/experience_logos/cityu-scm.svg",
+      logoAlt: "CityU School of Creative Media",
       description: "Studied user eye movement patterns across different transcription interfaces using eye-tracking technology at Prof. LIU Can's ERFI Lab, School of Creative Media.",
       highlights: [
         "Conducted eye-tracking studies on transcription interfaces",
@@ -87,6 +93,8 @@ const Experience = () => {
       year: 2023,
       location: "Beijing, China",
       supervisor: "Prof. Jiangtao Gong",
+      logo: "/imgs/experience_logos/tsinghua-air.png",
+      logoAlt: "Tsinghua AIR",
       description: "Participated in HCI Winter Camp focusing on an immersive CAVE space powered by LLMs for children with autism. Responsible for building the system and designing the LLM-based interaction framework.",
       highlights: [
         "Built immersive CAVE environment for autism support",
@@ -102,6 +110,8 @@ const Experience = () => {
       year: 2023,
       location: "Suzhou, China",
       supervisor: "Research Group",
+      logo: "/imgs/experience_logos/xjtlu.svg",
+      logoAlt: "Xi'an Jiaotong-Liverpool University",
       description: "Collaborated with research group studying user experience (e.g., the sense of embodiment) and VR rehabilitation. Responsible for technical implementation, designing, and building VR environments.",
       highlights: [
         "Developed VR rehabilitation environments",
@@ -166,6 +176,16 @@ const Experience = () => {
 
                       <div className="timeline-content">
                         <div className="experience-card">
+                          {exp.logo && (
+                            <div className="experience-logo-wrap">
+                              <img
+                                src={exp.logo}
+                                alt={exp.logoAlt}
+                                className="experience-logo"
+                              />
+                            </div>
+                          )}
+
                           <div className="card-header">
                             <h3 className="experience-title">{exp.title}</h3>
                             {exp.current && <span className="current-badge">Current</span>}
