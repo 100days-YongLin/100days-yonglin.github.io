@@ -79,9 +79,13 @@ const Contact = () => {
             <motion.div className="contact-info" variants={itemVariants}>
               <div className="info-cards">
                 {contactInfo.map((info, index) => (
-                  <motion.div
+                  <motion.a
                     key={index}
                     className="info-card"
+                    href={info.link}
+                    target={info.link?.startsWith('mailto:') ? undefined : '_blank'}
+                    rel={info.link?.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                    aria-label={info.label}
                     whileHover={{ y: -5, scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -90,20 +94,9 @@ const Contact = () => {
                     </div>
                     <div className="info-content">
                       <h3 className="info-title">{info.title}</h3>
-                      {info.link ? (
-                        <a
-                          href={info.link}
-                          className="info-value"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <span className="info-value">{info.value}</span>
-                      )}
+                      <span className="info-value">{info.value}</span>
                     </div>
-                  </motion.div>
+                  </motion.a>
                 ))}
               </div>
 

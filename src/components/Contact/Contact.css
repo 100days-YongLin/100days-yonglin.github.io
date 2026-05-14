@@ -35,6 +35,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  text-decoration: none;
+  color: inherit;
   min-height: 124px;
   justify-content: center;
   width: 100%;
@@ -44,6 +46,11 @@
 .info-card:hover {
   box-shadow: 0 8px 25px var(--shadow);
   border-color: rgba(14, 165, 233, 0.45);
+}
+
+.info-card:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
 }
 
 .info-icon {
@@ -70,7 +77,7 @@
 
 .info-value {
   display: block;
-  color: var(--primary-color);
+  color: var(--text-secondary);
   font-weight: 500;
   text-decoration: none;
   margin-bottom: 0;
@@ -83,7 +90,11 @@
 }
 
 .info-value:hover {
-  color: var(--secondary-color);
+  color: var(--text-secondary);
+}
+
+.info-card:hover .info-value {
+  color: var(--text-primary);
 }
 
 .info-description {
