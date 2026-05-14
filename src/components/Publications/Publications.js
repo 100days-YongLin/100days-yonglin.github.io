@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FiExternalLink, FiFileText, FiUsers, FiDownload, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { FiExternalLink, FiFileText, FiUsers, FiDownload } from 'react-icons/fi';
 import { generatePublicationsFromBib } from '../../utils/bibParser';
 import './Publications.css';
 
 const Publications = () => {
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [expandedAbstracts, setExpandedAbstracts] = useState({});
   const [activePublicationIndex, setActivePublicationIndex] = useState(0);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
 
@@ -70,20 +69,6 @@ const Publications = () => {
       link: "#"
     }
   ];
-
-  // 切换abstract展开状态
-  const toggleAbstract = (pubId) => {
-    setExpandedAbstracts(prev => ({
-      ...prev,
-      [pubId]: !prev[pubId]
-    }));
-  };
-
-  // 截断abstract文本
-  const truncateAbstract = (text, maxLength = 200) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + '...';
-  };
 
   // 处理PDF下载
   const handlePdfDownload = (pdfFileName) => {
@@ -165,31 +150,6 @@ const Publications = () => {
 
           {activePublication && (
             <div className="publications-showcase">
-              <div className="publication-preview-strip" aria-label="Publication previews">
-                {publications.map((pub, index) => (
-                  <button
-                    key={pub.id}
-                    type="button"
-                    className={`publication-thumbnail ${index === activePublicationIndex ? 'active' : ''}`}
-                    onClick={() => selectPublication(index)}
-                    aria-label={`Show publication: ${pub.title}`}
-                  >
-                    {pub.preview ? (
-                      <img
-                        src={`/imgs/publication_preview/${pub.preview}`}
-                        alt={`Preview of ${pub.title}`}
-                        className="thumbnail-image"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                        }}
-                      />
-                    ) : (
-                      <FiFileText />
-                    )}
-                  </button>
-                ))}
-              </div>
-
               <motion.article
                 key={activePublication.id}
                 className={`publication-detail-panel ${activePublication.featured ? 'featured' : ''}`}
@@ -236,29 +196,8 @@ const Publications = () => {
 
                     <div className="abstract-section">
                       <p className="abstract">
-                        {expandedAbstracts[activePublication.id]
-                          ? activePublication.abstract
-                          : truncateAbstract(activePublication.abstract)
-                        }
+                        {activePublication.abstract}
                       </p>
-                      {activePublication.abstract.length > 200 && (
-                        <button
-                          className="expand-button"
-                          onClick={() => toggleAbstract(activePublication.id)}
-                        >
-                          {expandedAbstracts[activePublication.id] ? (
-                            <>
-                              <span>Show less</span>
-                              <FiChevronUp />
-                            </>
-                          ) : (
-                            <>
-                              <span>Show more</span>
-                              <FiChevronDown />
-                            </>
-                          )}
-                        </button>
-                      )}
                     </div>
 
                     <div className="publication-actions">
@@ -290,6 +229,35 @@ const Publications = () => {
                   </div>
                 </div>
               </motion.article>
+
+              <div className="publication-preview-strip" aria-label="Publication previews">
+                {publications.map((pub, index) => (
+                  <button
+                    key={pub.id}
+                    type="button"
+                    className={`publication-thumbnail ${index === activePublicationIndex ? 'active' : ''}`}
+                    onClick={() => selectPublication(index)}
+                    aria-label={`Show publication: ${pub.title}`}
+                  >
+                    {pub.preview ? (
+                      <img
+                        src={`/imgs/publication_preview/${pub.preview}`}
+                        alt={`Preview of ${pub.title}`}
+                        className="thumbnail-image"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <FiFileText />
+                    )}
+                    <span className="thumbnail-meta">
+                      <span>{pub.year}</span>
+                      <span>{pub.type}</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
