@@ -14,15 +14,15 @@ const Footer = ({ onSectionChange }) => {
   ];
 
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Publications', href: '#publications' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'News', href: '#news' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'About', section: 'about', href: '#/about' },
+    { name: 'Publications', section: 'publications', href: '#/publications' },
+    { name: 'Experience', section: 'experience', href: '#/experience' },
+    { name: 'News', section: 'news', href: '#/news' },
+    { name: 'Contact', section: 'contact', href: '#/contact' }
   ];
 
-  const selectSection = (href) => {
-    onSectionChange(href.slice(1));
+  const selectSection = (section) => {
+    onSectionChange(section);
   };
 
   return (
@@ -49,7 +49,7 @@ const Footer = ({ onSectionChange }) => {
                         href={link.href}
                         onClick={(e) => {
                           e.preventDefault();
-                          selectSection(link.href);
+                          selectSection(link.section);
                         }}
                         className="footer-link"
                       >

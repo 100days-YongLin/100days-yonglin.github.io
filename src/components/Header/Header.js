@@ -19,12 +19,12 @@ const Header = ({ activeSection, onSectionChange, onThemeModeChange, resolvedThe
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Profile', href: '#home', icon: FiUser },
-    { name: 'About', href: '#about', icon: FiInfo },
-    { name: 'Publications', href: '#publications', icon: FiBookOpen },
-    { name: 'Experience', href: '#experience', icon: FiBriefcase },
-    { name: 'News', href: '#news', icon: FiBell },
-    { name: 'Contact', href: '#contact', icon: FiMail }
+    { name: 'Profile', section: 'home', href: '#/profile', icon: FiUser },
+    { name: 'About', section: 'about', href: '#/about', icon: FiInfo },
+    { name: 'Publications', section: 'publications', href: '#/publications', icon: FiBookOpen },
+    { name: 'Experience', section: 'experience', href: '#/experience', icon: FiBriefcase },
+    { name: 'News', section: 'news', href: '#/news', icon: FiBell },
+    { name: 'Contact', section: 'contact', href: '#/contact', icon: FiMail }
   ];
 
   const themeItems = [
@@ -33,8 +33,8 @@ const Header = ({ activeSection, onSectionChange, onThemeModeChange, resolvedThe
     { mode: 'light', icon: FiSun, label: 'Light' }
   ];
 
-  const selectSection = (href) => {
-    onSectionChange(href.slice(1));
+  const selectSection = (section) => {
+    onSectionChange(section);
     setIsMobileMenuOpen(false);
   };
 
@@ -53,10 +53,10 @@ const Header = ({ activeSection, onSectionChange, onThemeModeChange, resolvedThe
             whileTap={{ scale: 0.95 }}
           >
             <a
-              href="#home"
+              href="#/profile"
               onClick={(e) => {
                 e.preventDefault();
-                selectSection('#home');
+                selectSection('home');
               }}
             >
               <span className="logo-text">Yonglin Chen</span>
@@ -77,9 +77,9 @@ const Header = ({ activeSection, onSectionChange, onThemeModeChange, resolvedThe
                     href={item.href}
                     onClick={(e) => {
                       e.preventDefault();
-                      selectSection(item.href);
+                      selectSection(item.section);
                     }}
-                    className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
+                    className={`nav-link ${activeSection === item.section ? 'active' : ''}`}
                   >
                     <item.icon />
                     {item.name}
@@ -144,9 +144,9 @@ const Header = ({ activeSection, onSectionChange, onThemeModeChange, resolvedThe
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
-                    selectSection(item.href);
+                    selectSection(item.section);
                   }}
-                  className={`mobile-nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
+                  className={`mobile-nav-link ${activeSection === item.section ? 'active' : ''}`}
                 >
                   <item.icon />
                   {item.name}

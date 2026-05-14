@@ -1,20 +1,45 @@
 .experience {
   background: transparent;
+  height: 100%;
+  min-height: 0;
+  padding: 1.35rem 0;
+}
+
+.experience .container {
+  height: 100%;
 }
 
 .experience-content {
-  max-width: 1000px;
+  max-width: 1120px;
+  height: 100%;
   margin: 0 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 0.5rem;
+}
+
+.experience-content .section-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin-bottom: 0.9rem;
+  padding: 0.1rem 0 0.75rem;
+  background: linear-gradient(to bottom, var(--background), transparent);
 }
 
 .timeline {
   position: relative;
-  margin-top: 1.4rem;
+  margin-top: 0.4rem;
+  display: grid;
+  gap: 0.75rem;
 }
 
 .year-group {
   position: relative;
-  margin-bottom: 1.8rem;
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 0;
 }
 
 .year-group:last-child {
@@ -22,56 +47,47 @@
 }
 
 .year-marker {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  display: block;
+  margin-bottom: 0;
   position: relative;
 }
 
 .year-label {
-  font-size: 1rem;
+  position: sticky;
+  top: 3.2rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  color: var(--primary-color);
-  background: var(--surface);
-  padding: 0.4rem 0.875rem;
-  border-radius: 10px;
-  border: 2px solid var(--primary-color);
-  min-width: 70px;
+  color: var(--text-primary);
+  background: var(--control-bg);
+  padding: 0.42rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  min-width: 64px;
   text-align: center;
-  position: relative;
   z-index: 3;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+  box-shadow: none;
 }
 
 .year-line {
-  flex: 1;
-  height: 2px;
-  background: linear-gradient(to right, var(--primary-color), transparent);
-  margin-left: 1rem;
-  opacity: 0.3;
+  display: none;
 }
 
 .year-experiences {
-  margin-left: 1.4rem;
+  display: grid;
+  gap: 0.65rem;
+  margin-left: 0;
   position: relative;
 }
 
 .year-experiences::before {
-  content: '';
-  position: absolute;
-  left: -1rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--border);
-  opacity: 0.5;
+  content: none;
 }
 
 .timeline-item {
-  display: flex;
-  margin-bottom: 1rem;
+  display: block;
+  margin-bottom: 0;
   position: relative;
-  margin-left: -1.4rem;
+  margin-left: 0;
 }
 
 .timeline-item:last-child {
@@ -79,12 +95,7 @@
 }
 
 .timeline-marker {
-  position: relative;
-  margin-right: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
+  display: none;
 }
 
 .timeline-dot {
@@ -108,34 +119,39 @@
 
 .timeline-content {
   flex: 1;
-  margin-top: -8px;
+  margin-top: 0;
 }
 
 .experience-card {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.48);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  padding: 1rem;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
+[data-theme="dark"] .experience-card {
+  background: rgba(255, 255, 255, 0.055);
+}
+
 .experience-card::before {
   content: '';
   position: absolute;
-  top: 0;
   left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--gradient);
-  opacity: 0;
+  top: 0.9rem;
+  bottom: 0.9rem;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--border);
+  opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 .experience-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px var(--shadow);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
   border-color: rgba(14, 165, 233, 0.45);
 }
 
@@ -144,12 +160,13 @@
 }
 
 .timeline-item.current .experience-card {
-  border-color: var(--primary-color);
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
+  border-color: rgba(14, 165, 233, 0.42);
+  box-shadow: none;
 }
 
 .timeline-item.current .experience-card::before {
   opacity: 1;
+  background: var(--gradient);
 }
 
 .card-header {
@@ -162,8 +179,8 @@
 }
 
 .experience-title {
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 720;
   color: var(--text-primary);
   margin: 0;
 }
@@ -181,7 +198,7 @@
 
 .organization {
   font-size: 0.78rem;
-  font-weight: 500;
+  font-weight: 650;
   color: var(--primary-color);
   margin: 0 0 0.55rem 0;
 }
@@ -209,9 +226,9 @@
 
 .experience-description {
   color: var(--text-secondary);
-  line-height: 1.45;
-  margin-bottom: 0.75rem;
-  font-size: 0.72rem;
+  line-height: 1.5;
+  margin-bottom: 0.65rem;
+  font-size: 0.76rem;
 }
 
 .highlights {
@@ -226,7 +243,7 @@
   margin-bottom: 0.42rem;
   color: var(--text-secondary);
   line-height: 1.4;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
 }
 
 .highlights li::before {
@@ -300,13 +317,20 @@
 
 /* Mobile styles */
 @media (max-width: 767px) {
+  .experience-content {
+    padding-right: 0;
+  }
+
+  .year-group {
+    grid-template-columns: 1fr;
+  }
+
   .year-marker {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 1rem;
+    margin-bottom: -0.15rem;
   }
 
   .year-label {
+    position: static;
     font-size: 0.95rem;
     padding: 0.3rem 0.65rem;
     min-width: 55px;
@@ -320,7 +344,7 @@
   }
 
   .year-experiences {
-    margin-left: 1rem;
+    margin-left: 0;
   }
 
   .year-experiences::before {
@@ -328,7 +352,7 @@
   }
 
   .timeline-item {
-    margin-left: -1rem;
+    margin-left: 0;
   }
 
   .timeline-marker {
@@ -394,7 +418,7 @@
   }
 
   .experience-title {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
   }
 
   .organization {

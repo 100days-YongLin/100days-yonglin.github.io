@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
@@ -11,20 +11,28 @@ import Footer from './components/Footer/Footer';
 import './App.css';
 
 const SECTION_ORDER = ['home', 'about', 'publications', 'experience', 'news', 'contact'];
-const WHEEL_PAGE_COOLDOWN = 760;
-const WHEEL_DELTA_THRESHOLD = 36;
+const SECTION_ROUTES = {
+  home: '/profile',
+  about: '/about',
+  publications: '/publications',
+  experience: '/experience',
+  news: '/news',
+  contact: '/contact'
+};
 
-function App() {
+const getSectionFromPathname = (pathname) => {
+  if (pathname.startsWith('/papers/')) return 'publications';
+  const matchedSection = SECTION_ORDER.find((section) => SECTION_ROUTES[section] === pathname);
+  return matchedSection || 'home';
+};
+
+function AppShell() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [themeMode, setThemeMode] = useState(() => localStorage.getItem('themeMode') || 'system');
   const [resolvedTheme, setResolvedTheme] = useState('dark');
-  const [activeSection, setActiveSection] = useState('home');
-  const activeSectionRef = useRef(activeSection);
   const contentPaneRef = useRef(null);
-  const lastWheelPageChangeRef = useRef(0);
-
-  useEffect(() => {
-    activeSectionRef.current = activeSection;
-  }, [activeSection]);
+  const activeSection = getSectionFromPathname(location.pathname);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -50,69 +58,21 @@ function App() {
   };
 
   const handleSectionChange = useCallback((section) => {
-    setActiveSection(section);
-    activeSectionRef.current = section;
+    navigate(SECTION_ROUTES[section] || SECTION_ROUTES.home);
+  }, [navigate]);
 
-    contentPaneRef.current?.scrollTo({ top: 0, behavior: 'auto' });
-  }, []);
+  const handlePaperChange = useCallback((paperId) => {
+    navigate(`/papers/${paperId}`);
+  }, [navigate]);
 
   useEffect(() => {
-    const scrollContainer = contentPaneRef.current;
-    if (!scrollContainer) return undefined;
-
-    const handleContentWheel = (event) => {
-      if (Math.abs(event.deltaY) < WHEEL_DELTA_THRESHOLD) {
-        return;
-      }
-
-      const isScrollingDown = event.deltaY > 0;
-      const maxScrollTop = scrollContainer.scrollHeight - scrollContainer.clientHeight;
-      const isScrollable = maxScrollTop > 1;
-      const isAtTop = scrollContainer.scrollTop <= 1;
-      const isAtBottom = scrollContainer.scrollTop >= maxScrollTop - 1;
-      const shouldSwitchPage = !isScrollable ||
-        (isScrollingDown && isAtBottom) ||
-        (!isScrollingDown && isAtTop);
-
-      if (!shouldSwitchPage) {
-        return;
-      }
-
-      const now = Date.now();
-      if (now - lastWheelPageChangeRef.current < WHEEL_PAGE_COOLDOWN) {
-        event.preventDefault();
-        return;
-      }
-
-      const direction = isScrollingDown ? 1 : -1;
-      const currentIndex = SECTION_ORDER.indexOf(activeSectionRef.current);
-      const nextIndex = Math.min(
-        Math.max(currentIndex + direction, 0),
-        SECTION_ORDER.length - 1
-      );
-
-      event.preventDefault();
-
-      if (nextIndex === currentIndex) {
-        lastWheelPageChangeRef.current = now;
-        return;
-      }
-
-      lastWheelPageChangeRef.current = now;
-      handleSectionChange(SECTION_ORDER[nextIndex]);
-    };
-
-    scrollContainer.addEventListener('wheel', handleContentWheel, { passive: false });
-
-    return () => {
-      scrollContainer.removeEventListener('wheel', handleContentWheel);
-    };
-  }, [handleSectionChange]);
+    contentPaneRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+  }, [location.pathname]);
 
   const sectionPages = {
     home: <Hero />,
     about: <About />,
-    publications: <Publications />,
+    publications: <Publications onPublicationSelect={handlePaperChange} />,
     experience: <Experience />,
     news: <News />,
     contact: (
@@ -124,30 +84,53 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App">
-        <div className="app-atmosphere" aria-hidden="true"></div>
-        <div className="settings-window">
-          <Header
-            activeSection={activeSection}
-            resolvedTheme={resolvedTheme}
-            onSectionChange={handleSectionChange}
-            onThemeModeChange={handleThemeModeChange}
-            themeMode={themeMode}
-          />
-          <div className="content-pane" ref={contentPaneRef}>
-            <main>
-              <Routes>
-                <Route path="/" element={
-                  <div className="page-shell">
-                    {sectionPages[activeSection]}
-                  </div>
-                } />
-              </Routes>
-            </main>
-          </div>
+    <div className="App">
+      <div className="app-atmosphere" aria-hidden="true"></div>
+      <div className="settings-window">
+        <Header
+          activeSection={activeSection}
+          resolvedTheme={resolvedTheme}
+          onSectionChange={handleSectionChange}
+          onThemeModeChange={handleThemeModeChange}
+          themeMode={themeMode}
+        />
+        <div className="content-pane" ref={contentPaneRef}>
+          <main>
+            <Routes>
+              <Route path="/" element={<Navigate to="/profile" replace />} />
+              <Route path="/profile" element={<div className="page-shell">{sectionPages.home}</div>} />
+              <Route path="/about" element={<div className="page-shell">{sectionPages.about}</div>} />
+              <Route path="/publications" element={<div className="page-shell">{sectionPages.publications}</div>} />
+              <Route path="/papers/:paperId" element={<PaperRoute onPublicationSelect={handlePaperChange} />} />
+              <Route path="/experience" element={<div className="page-shell">{sectionPages.experience}</div>} />
+              <Route path="/news" element={<div className="page-shell">{sectionPages.news}</div>} />
+              <Route path="/contact" element={<div className="page-shell">{sectionPages.contact}</div>} />
+              <Route path="*" element={<Navigate to="/profile" replace />} />
+            </Routes>
+          </main>
         </div>
       </div>
+    </div>
+  );
+}
+
+function PaperRoute({ onPublicationSelect }) {
+  const { paperId } = useParams();
+
+  return (
+    <div className="page-shell">
+      <Publications
+        selectedPublicationId={paperId}
+        onPublicationSelect={onPublicationSelect}
+      />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppShell />
     </Router>
   );
 }

@@ -5,7 +5,44 @@ import { FiExternalLink, FiFileText, FiUsers, FiDownload, FiX } from 'react-icon
 import { generatePublicationsFromBib } from '../../utils/bibParser';
 import './Publications.css';
 
-const Publications = () => {
+const getVenueAbbreviation = (pub) => {
+  const venue = `${pub.journal || ''} ${pub.booktitle || ''}`;
+
+  if (/ICCAIS|Computer Application and Information Security/i.test(venue)) return 'ICCAIS';
+  if (/Chinese\s*CHI|ChineseCHI/i.test(venue)) return 'ChineseCHI';
+  if (/Human Factors in Computing Systems|CHI Conference|CHI\s*'?\d{2}/i.test(venue)) return 'CHI';
+  if (/Intelligent User Interfaces|IUI/i.test(venue)) return 'IUI';
+  if (/Visualization and Computer Graphics|TVCG/i.test(venue)) return 'TVCG';
+  if (/Virtual Reality|VRW|VR/i.test(venue)) return 'IEEE VR';
+  if (/IEEE/i.test(venue)) return 'IEEE';
+  if (/ACM/i.test(venue)) return 'ACM';
+
+  return pub.type?.replace(/paper|article/ig, '').trim() || 'Paper';
+};
+
+const getVenueYear = (pub) => {
+  const venue = `${pub.journal || ''} ${pub.booktitle || ''}`;
+  const venueYear = venue.match(/\b(20\d{2})\b/)?.[1];
+
+  return venueYear || pub.year;
+};
+
+const slugify = (value) => (
+  String(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+);
+
+const getPublicationRouteId = (pub) => {
+  const year = getVenueYear(pub);
+  const venue = slugify(getVenueAbbreviation(pub));
+  const id = slugify(pub.id || pub.title).slice(0, 48);
+
+  return [year, venue, id].filter(Boolean).join('-');
+};
+
+const Publications = ({ selectedPublicationId, onPublicationSelect }) => {
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activePublicationIndex, setActivePublicationIndex] = useState(0);
@@ -58,6 +95,21 @@ const Publications = () => {
   }, [isAutoRotating, publications.length]);
 
   useEffect(() => {
+    if (!selectedPublicationId || publications.length === 0) return;
+
+    const selectedIndex = publications.findIndex((publication) => (
+      getPublicationRouteId(publication) === selectedPublicationId
+    ));
+
+    if (selectedIndex >= 0) {
+      setSlideDirection(selectedIndex >= activePublicationIndex ? 1 : -1);
+      setActivePublicationIndex(selectedIndex);
+    }
+
+    setIsAutoRotating(false);
+  }, [activePublicationIndex, publications, selectedPublicationId]);
+
+  useEffect(() => {
     if (!lightboxImage) return undefined;
 
     const handleKeyDown = (event) => {
@@ -106,6 +158,11 @@ const Publications = () => {
     setSlideDirection(index >= activePublicationIndex ? 1 : -1);
     setActivePublicationIndex(index);
     setIsAutoRotating(false);
+
+    const publication = publications[index];
+    if (publication && onPublicationSelect) {
+      onPublicationSelect(getPublicationRouteId(publication));
+    }
   };
 
   const openPreviewImage = (publication) => {
@@ -116,28 +173,6 @@ const Publications = () => {
       src: `/imgs/publication_preview/${publication.preview}`,
       alt: `Preview of ${publication.title}`
     });
-  };
-
-  const getVenueAbbreviation = (pub) => {
-    const venue = `${pub.journal || ''} ${pub.booktitle || ''}`;
-
-    if (/ICCAIS|Computer Application and Information Security/i.test(venue)) return 'ICCAIS';
-    if (/Chinese\s*CHI|ChineseCHI/i.test(venue)) return 'ChineseCHI';
-    if (/Human Factors in Computing Systems|CHI Conference|CHI\s*'?\d{2}/i.test(venue)) return 'CHI';
-    if (/Intelligent User Interfaces|IUI/i.test(venue)) return 'IUI';
-    if (/Visualization and Computer Graphics|TVCG/i.test(venue)) return 'TVCG';
-    if (/Virtual Reality|VRW|VR/i.test(venue)) return 'IEEE VR';
-    if (/IEEE/i.test(venue)) return 'IEEE';
-    if (/ACM/i.test(venue)) return 'ACM';
-
-    return pub.type?.replace(/paper|article/ig, '').trim() || 'Paper';
-  };
-
-  const getVenueYear = (pub) => {
-    const venue = `${pub.journal || ''} ${pub.booktitle || ''}`;
-    const venueYear = venue.match(/\b(20\d{2})\b/)?.[1];
-
-    return venueYear || pub.year;
   };
 
   const containerVariants = {
@@ -201,15 +236,13 @@ const Publications = () => {
                 transition={{ duration: 0.34, ease: "easeOut" }}
               >
                 <div className="publication-body">
-                  <div className="publication-header">
+                  <div className="publication-details">
                     <div className="publication-meta">
                       <span className="publication-type">{activePublication.type}</span>
                       <span className="publication-year">{activePublication.year}</span>
                       {isAutoRotating && <span className="publication-rotation-note">Auto preview</span>}
                     </div>
-                  </div>
 
-                  <div className="publication-details">
                     <h3 className="publication-title">{activePublication.title}</h3>
 
                     <div className="authors">

@@ -164,6 +164,7 @@
   flex-wrap: wrap;
   gap: 0.55rem;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .publication-type,
