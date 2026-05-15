@@ -108,22 +108,15 @@ code {
     monospace;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 8px;
+/* Hide scrollbars while preserving scroll behavior */
+* {
+  scrollbar-width: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--surface);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-light);
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 /* Selection */

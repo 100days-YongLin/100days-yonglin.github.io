@@ -14,8 +14,15 @@
   height: 100%;
   margin: 0 auto;
   overflow-y: auto;
+  scrollbar-width: none;
   overscroll-behavior: contain;
   padding-right: 0.5rem;
+}
+
+.experience-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 .experience-content .section-header {
