@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.2738999f.css",
+    "main.css": "/static/css/main.7cb97c7d.css",
     "main.js": "/static/js/main.900d4d57.js",
     "static/media/AlimamaShuHeiTi-Bold.woff2": "/static/media/AlimamaShuHeiTi-Bold.07ba6db10d150b84b341.woff2",
     "static/media/Outfit-VariableFont_wght.ttf": "/static/media/Outfit-VariableFont_wght.bd9b98b120b5f2eb7266.ttf",
     "index.html": "/index.html",
-    "main.2738999f.css.map": "/static/css/main.2738999f.css.map",
+    "main.7cb97c7d.css.map": "/static/css/main.7cb97c7d.css.map",
     "main.900d4d57.js.map": "/static/js/main.900d4d57.js.map"
   },
   "entrypoints": [
-    "static/css/main.2738999f.css",
+    "static/css/main.7cb97c7d.css",
     "static/js/main.900d4d57.js"
   ]
 }
